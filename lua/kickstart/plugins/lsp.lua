@@ -114,13 +114,15 @@ return {
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          -- Use vim.lsp.config for modern LSP setup
+          vim.lsp.config[server_name] = server
+          vim.lsp.enable(server_name)
         end,
       },
     }
 
-    -- use a system installed basedpyright
-    require('lspconfig').basedpyright.setup {
+    -- use a system installed basedpyright with vim.lsp.config
+    vim.lsp.config.basedpyright = {
       capabilities = capabilities,
       settings = {
         basedpyright = {
@@ -138,5 +140,6 @@ return {
         end
       end,
     }
+    vim.lsp.enable('basedpyright')
   end,
 }
