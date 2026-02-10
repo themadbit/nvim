@@ -214,12 +214,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- In Neovim config
 vim.keymap.set('n', '<leader>tt', function()
-  vim.fn.system('tmux display-popup -E -w 80% -h 80%')
+  vim.fn.system 'tmux display-popup -E -w 80% -h 80%'
 end, { desc = 'Open tmux popup' })
 
 -- Floating lazygit
 vim.keymap.set('n', '<leader>gg', function()
-  vim.fn.system('tmux display-popup -E -w 95% -h 95% lazygit')
+  vim.fn.system 'tmux display-popup -E -w 80% -h 80% lazygit'
 end, { desc = 'Lazygit in popup' })
 
 -- [[ Basic Autocommands ]]
@@ -601,6 +601,7 @@ require('lazy').setup({
   require 'kickstart.plugins.autocompletion',
   require 'kickstart.plugins.copilot',
   require 'kickstart.plugins.codediff',
+  require 'kickstart.plugins.git_blame',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
